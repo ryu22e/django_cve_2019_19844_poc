@@ -124,3 +124,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGOUT_REDIRECT_URL = reverse_lazy('accounts:login')
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
