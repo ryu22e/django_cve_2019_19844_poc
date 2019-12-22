@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from os import environ
 
 from django.urls import reverse_lazy
 
@@ -77,13 +78,26 @@ WSGI_APPLICATION = 'django_cve_2019_19844_poc.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+_DJANGO_DATABASE_NAME = environ.get('DJANGO_DATABASE_NAME', '')
 
+if _DJANGO_DATABASE_NAME:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': _DJANGO_DATABASE_NAME,
+            'USER': environ.get('DJANGO_DATABASE_USER', ''),
+            'PASSWORD': environ.get('DJANGO_DATABASE_PASSWORD', ''),
+            'HOST': environ.get('DJANGO_DATABASE_PASSWORD', ''),
+            'PORT': environ.get('DJANGO_DATABASE_PORT', ''),
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
