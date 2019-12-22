@@ -6,5 +6,6 @@
 </head>
 <body>
   <h1>Hello, {{ request.user.username }}</h1>
+  <a href="{% url 'accounts:logout' %}">Logout</a>
 </body>
 </html>
