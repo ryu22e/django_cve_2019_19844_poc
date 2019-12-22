@@ -3,12 +3,15 @@ from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 
+from .forms import PasswordResetForm
+
 
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'profile.html'
 
 
 class PasswordResetView(auth_views.PasswordResetView):
+    form_class = PasswordResetForm
     subject_template_name = 'mails/password_reset/subject.txt'
     email_template_name = 'mails/password_reset/body.txt'
     template_name = 'password_reset.html'
