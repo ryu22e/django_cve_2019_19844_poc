@@ -10,6 +10,7 @@
     {% csrf_token %}
     {{ form.as_p }}
     <button>Login</button>
+    <p><a href="{% url 'accounts:password_reset' %}">Password Reset</a></p>
   </form>
 </body>
 </html>
