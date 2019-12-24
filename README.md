@@ -28,3 +28,5 @@ PoC for [CVE-2019-19844](https://www.djangoproject.com/weblog/2019/dec/18/securi
 1. Input `mıke@example.org` (Attacker's email), and click send button
 1. Receive email (Check console), and reset password
 1. Login as `mike123` user
+
+![Email](/images/email.jpg "Email")
